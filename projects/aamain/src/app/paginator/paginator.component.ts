@@ -8,7 +8,7 @@ import { Paged, Query } from '../movies.service.interface';
 })
 export class PaginatorComponent {
 
-  @Input() recordset?: Paged;
+  @Input() recordset!: Paged;
 
   @Output() paginate = new EventEmitter<Query>();
 
