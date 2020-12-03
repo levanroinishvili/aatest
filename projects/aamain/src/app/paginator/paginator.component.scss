@@ -1,0 +1,18 @@
+@import "viewports";
+
+:host {
+    display: grid;
+
+    // On extra small screens buttons will be placed vertically
+    @include xs {
+        grid-auto-columns: row;
+        grid-row-gap: 16px;
+    }
+
+    // On screens of good size buttons will be placed horizontally
+    @include gt-xs {
+        grid-auto-flow: column;
+        grid-auto-columns: max-content;
+        justify-content: space-between;
+    }
+}

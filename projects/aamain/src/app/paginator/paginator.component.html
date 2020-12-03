@@ -1,0 +1,4 @@
+<button mat-raised-button color="warn" [disabled]="!recordset.first" (click)="paginate.next(recordset.first)">First</button>
+<button mat-raised-button color="primary" [disabled]="!recordset.prev" (click)="paginate.next(recordset.prev)">Previous</button>
+<button mat-raised-button color="primary" [disabled]="!recordset.next" (click)="paginate.next(recordset.next)">Next</button>
+<button mat-raised-button color="warn" [disabled]="!recordset.last" (click)="paginate.next(recordset.last)">Last</button>

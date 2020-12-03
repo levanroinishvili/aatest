@@ -7,10 +7,12 @@ import { AalibModule } from 'aalib';
 
 import { AppComponent } from './app.component';
 import { MaterialModule } from './material.module';
+import { PaginatorComponent } from './paginator/paginator.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    PaginatorComponent
   ],
   imports: [
     BrowserModule,

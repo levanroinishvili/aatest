@@ -28,12 +28,7 @@
 <ng-template #result let-pagedmovies>
 
   <div class="results-with-pagination">
-    <div class="paginator">
-      <button mat-raised-button color="warn" [disabled]="!pagedmovies.first" (click)="paginationQuery$.next(pagedmovies.first)">First</button>
-      <button mat-raised-button color="primary" [disabled]="!pagedmovies.prev" (click)="paginationQuery$.next(pagedmovies.prev)">Previous</button>
-      <button mat-raised-button color="primary" [disabled]="!pagedmovies.next" (click)="paginationQuery$.next(pagedmovies.next)">Next</button>
-      <button mat-raised-button color="warn" [disabled]="!pagedmovies.last" (click)="paginationQuery$.next(pagedmovies.last)">Last</button>
-    </div>
+    <aa-paginator [recordset]="pagedmovies" (paginate)="paginationQuery$.next($event)"></aa-paginator>
 
     <div class="movie-box">
       <mat-card *ngFor="let movie of pagedmovies.records" class="mat-elevation-z3">
@@ -54,12 +49,7 @@
       </mat-card>
     </div>
 
-    <div class="paginator">
-      <button mat-raised-button color="primary" [disabled]="!pagedmovies.first" (click)="paginationQuery$.next(pagedmovies.first)">First</button>
-      <button mat-raised-button color="primary" [disabled]="!pagedmovies.prev" (click)="paginationQuery$.next(pagedmovies.prev)">Previous</button>
-      <button mat-raised-button color="primary" [disabled]="!pagedmovies.next" (click)="paginationQuery$.next(pagedmovies.next)">Next</button>
-      <button mat-raised-button color="primary" [disabled]="!pagedmovies.last" (click)="paginationQuery$.next(pagedmovies.last)">Last</button>
-    </div>
+    <aa-paginator [recordset]="pagedmovies" (paginate)="paginationQuery$.next($event)"></aa-paginator>
   </div>
 
 </ng-template>
