@@ -1,5 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnDestroy } from '@angular/core';
+import { Component } from '@angular/core';
 import { merge, Observable, of, Subject } from 'rxjs';
 import { catchError, delay, map, startWith } from 'rxjs/operators';
 import { switchMap, takeUntil } from 'rxjs/operators';
@@ -12,9 +12,7 @@ import { Query } from './movies.service.interface';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnDestroy {
-
-  unsubscribeAll = new Subject<void>();
+export class AppComponent {
 
   newSearchTerm$ = new Subject<string>(); // Emits new search terms
   newSearchQuery$: Observable<Query> = this.newSearchTerm$.pipe(
@@ -39,8 +37,7 @@ export class AppComponent implements OnDestroy {
       // Show loading after delay, but results and error instantly
       switchMap(result => result.type === 'loading' ? of(result).pipe(delay(500)) : of(result)),
       takeUntil(this.cancelSearch$) // Manually cancel previous search, if new search is invalid
-    )),
-    takeUntil(this.unsubscribeAll)
+    ))
   );
 
   constructor(
@@ -54,11 +51,6 @@ export class AppComponent implements OnDestroy {
     } else {
       this.newSearchTerm$.next(searchTerm);
     }
-  }
-
-  ngOnDestroy(): void {
-    this.unsubscribeAll.next();
-    this.unsubscribeAll.complete();
   }
 
 }
