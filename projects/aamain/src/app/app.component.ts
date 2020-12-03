@@ -45,7 +45,6 @@ export class AppComponent {
   ) { }
 
   search(searchTerm: string): void {
-    console.log(searchTerm);
     if ( searchTerm === null ) {
       this.cancelSearch$.next();
     } else {
