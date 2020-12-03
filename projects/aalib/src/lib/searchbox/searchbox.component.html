@@ -1,0 +1,22 @@
+<mat-form-field>
+    <mat-label>{{placeholder}}</mat-label>
+    <input matInput [formControl]="searchControl"><!-- [maxlength]="SETTINGS.maxLength" -->
+    <mat-error *ngIf="searchControl.hasError('pattern')">
+        {{patternError}}
+    </mat-error>
+    <mat-error *ngIf="searchControl.hasError('minlength') && ! searchControl.hasError('pattern')">
+        {{tooShortError}}
+    </mat-error>
+    <mat-error *ngIf="searchControl.hasError('maxlength') && ! searchControl.hasError('pattern')">
+        {{tooLongongError}}
+    </mat-error>
+    <mat-error *ngIf="searchControl.hasError('required')">
+        {{requiredError}}
+    </mat-error>
+</mat-form-field>
+
+<button mat-raised-button color="primary"
+    *ngIf="hideSearchButton!==true && hideSearchButton!==''"
+    [disabled]="searchControl.invalid"
+    (click)="search.emit(searchControl.value)"
+>{{buttonLabel}}</button>

@@ -1,0 +1,101 @@
+/* Define mixins for viewport sizes */
+
+/* First define breakpoints */
+$mobile-width: 600px;
+$tablet-portrait-width: 960px;
+$tablet-landscape-width: 1280px;
+$desktop-width: 1920px;
+
+
+// eXtra Small - mobile phone screen
+@mixin xs {
+    @media (max-width: #{$mobile-width - 1px}) {
+        @content;
+    }
+}
+
+
+// SMall - tablet portrait
+@mixin sm {
+    @media (min-width: $mobile-width) and (max-width: #{$tablet-portrait-width - 1px}) {
+        @content;
+    }
+}
+
+// MeDium - tablet landscape
+@mixin md {
+    @media (min-width: $tablet-portrait-width) and (max-width: #{$tablet-landscape-width - 1px}) {
+        @content;
+    }
+}
+
+
+// LarGe - desktop
+@mixin lg {
+    @media (min-width: $tablet-landscape-width) and (max-width: #{$desktop-width - 1px}) {
+        @content;
+    }
+}
+
+// eXtra Large - above Full-HD
+@mixin xl {
+    @media (min-width: $desktop-width) {
+        @content;
+    }
+}
+
+// Above mobile screens
+@mixin gt-xs {
+    @media (min-width: $mobile-width) {
+        @content;
+    }
+}
+
+// Above small tablets (above tablet portrait)
+@mixin gt-sm {
+    @media (min-width: $tablet-portrait-width) {
+        @content;
+    }
+}
+
+// Above large tablets (above tablet landscape)
+@mixin gt-md {
+    @media (min-width: $tablet-landscape-width) {
+        @content;
+    }
+}
+
+// Above normal desktops
+@mixin gt-lg {
+    @media (min-width: $desktop-width) {
+        @content;
+    }
+}
+
+// Below small tablets (below tablet portrait)
+@mixin lt-sm {
+    @media (max-width: #{$mobile-width - 1px}) {
+        @content;
+    }
+}
+
+// Below large tablets (below tablet landscape)
+@mixin lt-md {
+    @media (max-width: #{$tablet-portrait-width - 1px}) {
+        @content;
+    }
+}
+
+// Below desktop
+@mixin lt-lg {
+    @media (max-width: #{$tablet-landscape-width - 1px}) {
+        @content;
+    }
+}
+
+// Below extra large screens
+@mixin lt-xl {
+    @media (max-width: #{$desktop-width - 1px}) {
+        @content;
+    }
+}

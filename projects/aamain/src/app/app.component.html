@@ -1,0 +1,65 @@
+
+
+<div class="search-with-results">
+  <lib-searchbox [hideSearchButton]="false"
+    (search)="search($event)"
+  ></lib-searchbox>
+
+  <ng-container *ngIf="searchResults$ | async as results">
+
+    <ng-container [ngSwitch]="results.type">
+      <ng-template *ngSwitchCase="'loading'" [ngTemplateOutlet]="loading"></ng-template>
+      <ng-template *ngSwitchCase="'error'" [ngTemplateOutlet]="error" [ngTemplateOutletContext]="{$implicit: results.data}"></ng-template>
+      <ng-template *ngSwitchCase="'result'" [ngTemplateOutlet]="result" [ngTemplateOutletContext]="{$implicit: results.data}"></ng-template>
+    </ng-container>
+  </ng-container>
+
+</div>
+
+
+<ng-template #loading>
+  <mat-spinner class="loading-spinner"></mat-spinner>
+</ng-template>
+
+<ng-template #error let-error>
+  Error: {{error.message}}
+</ng-template>
+
+<ng-template #result let-pagedmovies>
+
+  <div class="results-with-pagination">
+    <div class="paginator">
+      <button mat-raised-button color="primary" [disabled]="!pagedmovies.first" (click)="paginationQuery$.next(pagedmovies.first)">First</button>
+      <button mat-raised-button color="primary" [disabled]="!pagedmovies.prev" (click)="paginationQuery$.next(pagedmovies.prev)">Previous</button>
+      <button mat-raised-button color="primary" [disabled]="!pagedmovies.next" (click)="paginationQuery$.next(pagedmovies.next)">Next</button>
+      <button mat-raised-button color="primary" [disabled]="!pagedmovies.last" (click)="paginationQuery$.next(pagedmovies.last)">Last</button>
+    </div>
+
+    <div class="movie-box">
+      <mat-card *ngFor="let movie of pagedmovies.records" class="mat-elevation-z3">
+        <mat-card-header>
+          <div mat-card-avatar></div>
+          <mat-card-title>{{movie.title}}</mat-card-title>
+          <mat-card-subtitle>Year of production: {{movie.year}}</mat-card-subtitle>
+        </mat-card-header>
+        <img mat-card-image [src]="movie.poster" alt="Photo of a Shiba Inu">
+        <mat-card-content>
+          <p [innerText]="movie.id"></p>
+          <pre>{{movie | json}}</pre>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-raised-button color="primary">LIKE</button>
+          <button mat-raised-button color="primary">SHARE</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+
+    <div class="paginator">
+      <button mat-raised-button color="primary" [disabled]="!pagedmovies.first" (click)="paginationQuery$.next(pagedmovies.first)">First</button>
+      <button mat-raised-button color="primary" [disabled]="!pagedmovies.prev" (click)="paginationQuery$.next(pagedmovies.prev)">Previous</button>
+      <button mat-raised-button color="primary" [disabled]="!pagedmovies.next" (click)="paginationQuery$.next(pagedmovies.next)">Next</button>
+      <button mat-raised-button color="primary" [disabled]="!pagedmovies.last" (click)="paginationQuery$.next(pagedmovies.last)">Last</button>
+    </div>
+  </div>
+
+</ng-template>

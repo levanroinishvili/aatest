@@ -1,0 +1,6 @@
+:host {
+    display: inline-grid;
+    grid-template-columns: minmax(0, 1fr) max-content;
+    grid-column-gap: 24px;
+    align-items: baseline;
+}

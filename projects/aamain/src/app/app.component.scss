@@ -1,0 +1,70 @@
+@import "viewports";
+
+:host {
+    display: block;
+    margin: 20px;
+}
+
+
+.search-with-results {
+    display: grid;
+    grid-template-rows: max-content 1fr;
+    grid-template-columns: minmax(0, 1fr);
+}
+
+.results-with-pagination {
+    display: grid;
+    grid-auto-flow: row;
+    grid-row-gap: 96px;
+}
+
+.loading-spinner {
+    margin: auto;
+}
+
+.movie-box {
+    display: grid;
+    grid-gap: 48px 24px;
+}
+
+.movie-box {
+    @include sm {
+        grid-template-columns: repeat(1, minmax(0, 1fr));
+    }
+    @include md {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    @include lg {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+    @include gt-lg {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+}
+
+
+mat-card {
+    overflow: hidden;
+}
+
+[mat-card-avatar] {
+    background-image: url('https://lh3.googleusercontent.com/proxy/T2GCgzpGPbcvDrmo-EXmJhUEQrv9nMJHX9DqdNgyFdCDvpsdFH9pF-LmfeU72LERBJ3i3BoHOcWOm9JDNue7M-q8ctUaESuRbMClYzJyDqSSiORbCtMSJ-5GQaoWTZwD6nXh9uTue6hBcSnWsbe8HVppY6e3qzM_a7gFwFmJp1j7as2tmCUx1FBzh0sSzQNX');
+    background-size: cover;
+}
+
+.paginator {
+    display: grid;
+
+    // On extra small screens buttons will be placed vertically
+    @include xs {
+        grid-auto-columns: row;
+        grid-row-gap: 16px;
+    }
+
+    // On screens of good size buttons will be placed horizontally
+    @include gt-xs {
+        grid-auto-flow: column;
+        grid-auto-columns: max-content;
+        justify-content: space-between;
+    }
+}

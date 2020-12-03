@@ -1,0 +1,16 @@
+{
+  "name": "aalib",
+  "version": "0.0.1",
+  "peerDependencies": {
+    "@angular/animations": "~11.0.1",
+    "@angular/cdk": "^11.0.1",
+    "@angular/common": "^11.0.1",
+    "@angular/core": "^11.0.1",
+    "@angular/forms": "~11.0.1",
+    "@angular/material": "^11.0.1",
+    "@angular/platform-browser": "~11.0.1"
+  },
+  "dependencies": {
+    "tslib": "^2.0.0"
+  }
+}
