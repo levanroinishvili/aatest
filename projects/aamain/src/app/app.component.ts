@@ -37,7 +37,7 @@ export class AppComponent implements OnDestroy {
       startWith({type: 'loading' as 'loading', data: null}),
       catchError((error: HttpErrorResponse | Error) => of({type: 'error' as 'error', data: error})),
       // Show loading after delay, but results and error instantly
-      switchMap(result => 'loading' in result ? of(result).pipe(delay(500)) : of(result)),
+      switchMap(result => result.type === 'loading' ? of(result).pipe(delay(500)) : of(result)),
       takeUntil(this.cancelSearch$) // Manually cancel previous search, if new search is invalid
     )),
     takeUntil(this.unsubscribeAll)
